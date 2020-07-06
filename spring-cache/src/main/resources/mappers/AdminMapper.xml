@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--对应的接口类位置-->
+<mapper namespace="com.epoint.cache.mapper.AdminMapper">
+  <!--将表中的属性与实体类中的属性一一对应-->
+  <resultMap id="BaseResultMap" type="com.epoint.cache.entity.Admin">
+    <id column="adminid" jdbcType="INTEGER" property="adminid" />
+    <result column="adminname" jdbcType="VARCHAR" property="adminname" />
+    <result column="adminpwd" jdbcType="VARCHAR" property="adminpwd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adminid, adminname, adminpwd
+  </sql>
+  <!--resultType 代表查询出来的数据用哪一个实体类进行映射 -->
+  <!--parameterType 代表传入数据参数类型 -->
+  <select id="selectByPrimaryKey" resultType="com.epoint.cache.entity.Admin">
+    select 
+    *
+    from admin
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.epoint.cache.entity.Admin">
+    insert into admin (adminid, adminname, adminpwd
+      )
+    values (#{adminid,jdbcType=INTEGER}, #{adminname,jdbcType=VARCHAR}, #{adminpwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.epoint.cache.entity.Admin">
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="adminname != null">
+        adminname,
+      </if>
+      <if test="adminpwd != null">
+        adminpwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminid != null">
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="adminname != null">
+        #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpwd != null">
+        #{adminpwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.epoint.cache.entity.Admin">
+    update admin
+    <set>
+      <if test="adminname != null">
+        adminname = #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpwd != null">
+        adminpwd = #{adminpwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.epoint.cache.entity.Admin">
+    update admin
+    set adminname = #{adminname,jdbcType=VARCHAR},
+      adminpwd = #{adminpwd,jdbcType=VARCHAR}
+    where adminid = #{adminid,jdbcType=INTEGER}
+  </update>
+</mapper>

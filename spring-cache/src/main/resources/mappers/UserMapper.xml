@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.epoint.cache.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.epoint.cache.entity.User">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="blog" jdbcType="VARCHAR" property="blog" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="fans" jdbcType="INTEGER" property="fans" />
+    <result column="concern" jdbcType="INTEGER" property="concern" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="kiss" jdbcType="INTEGER" property="kiss" />
+    <result column="signtime" jdbcType="TIMESTAMP" property="signtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, username, email, sex, password, phone, status, blog, img, fans, concern, 
+    introduction, kiss, signtime
+  </sql>
+  <select id="selectByUserId" resultType="com.epoint.cache.entity.User">
+    select 
+    *
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.epoint.cache.entity.User">
+    insert into user (userid, username, email, 
+      sex, password, phone, 
+      status, blog, img, 
+      fans, concern, introduction, 
+      kiss, signtime)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{blog,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{fans,jdbcType=INTEGER}, #{concern,jdbcType=INTEGER}, #{introduction,jdbcType=VARCHAR}, 
+      #{kiss,jdbcType=INTEGER}, #{signtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.epoint.cache.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="blog != null">
+        blog,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="fans != null">
+        fans,
+      </if>
+      <if test="concern != null">
+        concern,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="kiss != null">
+        kiss,
+      </if>
+      <if test="signtime != null">
+        signtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="blog != null">
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        #{fans,jdbcType=INTEGER},
+      </if>
+      <if test="concern != null">
+        #{concern,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="kiss != null">
+        #{kiss,jdbcType=INTEGER},
+      </if>
+      <if test="signtime != null">
+        #{signtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.epoint.cache.entity.User">
+    update user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="blog != null">
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        fans = #{fans,jdbcType=INTEGER},
+      </if>
+      <if test="concern != null">
+        concern = #{concern,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="kiss != null">
+        kiss = #{kiss,jdbcType=INTEGER},
+      </if>
+      <if test="signtime != null">
+        signtime = #{signtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.epoint.cache.entity.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      blog = #{blog,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      fans = #{fans,jdbcType=INTEGER},
+      concern = #{concern,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      kiss = #{kiss,jdbcType=INTEGER},
+      signtime = #{signtime,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
